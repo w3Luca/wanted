@@ -1,52 +1,48 @@
-import RecruitStack from './stacks/RecruitStack';
-import CareerStack from './stacks/CareerStack';
+import RecruitStack, { RecruitStackParamList } from './stacks/RecruitStack';
+import CareerStack, { CareerStackParamList } from './stacks/CareerStack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import SocialStack from './stacks/SocialStack';
-import MyWantedStack from './stacks/MyWantedStack';
-import AllMenuStack from './stacks/AllMenuStack';
+import SocialStack, { SocialStackParamList } from './stacks/SocialStack';
+import MyWantedStack, { MyWantedStackParamList } from './stacks/MyWantedStack';
+import AllMenuStack, { AllMenuStackParamList } from './stacks/AllMenuStack';
 import IonIcon from 'react-native-vector-icons/Ionicons';
+import { NavigatorScreenParams } from '@react-navigation/native';
+import { mainTabNavigations } from '../constants/navigations';
 
-const Tab = createBottomTabNavigator();
+export type MainTabParamList = {
+  [mainTabNavigations.RECRUIT_TAB]: NavigatorScreenParams<RecruitStackParamList>;
+  [mainTabNavigations.CAREER_TAB]: NavigatorScreenParams<CareerStackParamList>;
+  [mainTabNavigations.SOCIAL_TAB]: NavigatorScreenParams<SocialStackParamList>;
+  [mainTabNavigations.MY_WANTED_TAB]: NavigatorScreenParams<MyWantedStackParamList>;
+  [mainTabNavigations.ALL_MENU_TAB]: NavigatorScreenParams<AllMenuStackParamList>;
+};
 
-const RecruitTabIcon = ({ color, size }: { color: string; size: number }) => (
+type TabIconProps = {
+  focused: boolean;
+  color: string;
+  size: number;
+};
+
+const Tab = createBottomTabNavigator<MainTabParamList>();
+
+const RecruitTabIcon = ({ color, size }: TabIconProps) => (
   <IonIcon name="bag" size={size} color={color} />
 );
 
-const CareerTabIcon = ({
-  color,
-  size,
-}: {
-  focused: boolean;
-  color: string;
-  size: number;
-}) => <IonIcon name="flag" size={size} color={color} />;
+const CareerTabIcon = ({ color, size }: TabIconProps) => (
+  <IonIcon name="flag" size={size} color={color} />
+);
 
-const SocialTabIcon = ({
-  color,
-  size,
-}: {
-  focused: boolean;
-  color: string;
-  size: number;
-}) => <IonIcon name="people" size={size} color={color} />;
+const SocialTabIcon = ({ color, size }: TabIconProps) => (
+  <IonIcon name="people" size={size} color={color} />
+);
 
-const MyWantedTabIcon = ({
-  color,
-  size,
-}: {
-  focused: boolean;
-  color: string;
-  size: number;
-}) => <IonIcon name="person-circle" size={size} color={color} />;
+const MyWantedTabIcon = ({ color, size }: TabIconProps) => (
+  <IonIcon name="person-circle" size={size} color={color} />
+);
 
-const AllMenuTabIcon = ({
-  color,
-  size,
-}: {
-  focused: boolean;
-  color: string;
-  size: number;
-}) => <IonIcon name="menu" size={size} color={color} />;
+const AllMenuTabIcon = ({ color, size }: TabIconProps) => (
+  <IonIcon name="menu" size={size} color={color} />
+);
 
 // 하단 탭 UI와 탭 간 전환 관리
 // RecruitStack과 CareerStack을 탭으로 연결
@@ -68,7 +64,7 @@ export default function MainTabNavigator() {
       }}
     >
       <Tab.Screen
-        name="RecruitTab"
+        name={mainTabNavigations.RECRUIT_TAB}
         component={RecruitStack}
         options={{
           title: '채용',
@@ -76,7 +72,7 @@ export default function MainTabNavigator() {
         }}
       />
       <Tab.Screen
-        name="CareerTab"
+        name={mainTabNavigations.CAREER_TAB}
         component={CareerStack}
         options={{
           title: '커리어',
@@ -84,7 +80,7 @@ export default function MainTabNavigator() {
         }}
       />
       <Tab.Screen
-        name="SocialTab"
+        name={mainTabNavigations.SOCIAL_TAB}
         component={SocialStack}
         options={{
           title: '소셜',
@@ -92,7 +88,7 @@ export default function MainTabNavigator() {
         }}
       />
       <Tab.Screen
-        name="MyWantedTab"
+        name={mainTabNavigations.MY_WANTED_TAB}
         component={MyWantedStack}
         options={{
           title: 'MY 원티드',
@@ -100,7 +96,7 @@ export default function MainTabNavigator() {
         }}
       />
       <Tab.Screen
-        name="AllMenuTab"
+        name={mainTabNavigations.ALL_MENU_TAB}
         component={AllMenuStack}
         options={{
           title: '전체',

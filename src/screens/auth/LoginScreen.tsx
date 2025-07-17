@@ -1,9 +1,9 @@
 import { Text, View } from 'react-native';
 
-export default function AuthScreen() {
+export default function LoginScreen() {
   return (
     <View>
-      <Text>Auth</Text>
+      <Text>Login</Text>
     </View>
   );
 }

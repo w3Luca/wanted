@@ -1,17 +1,20 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import RecruitScreen from '../../screens/RecruitScreen';
+import RecruitScreen from '../../screens/recruit/RecruitScreen';
+import { recruitNavigations } from '../../constants/navigations';
 
-const Stack = createNativeStackNavigator();
+export type RecruitStackParamList = {
+  [recruitNavigations.RECRUIT]: undefined;
+};
 
-// Recruit 관련 화면들의 Stack Navigator
-// 각 도메인별 화면 그룹 관리
+const Stack = createNativeStackNavigator<RecruitStackParamList>();
+
 export default function RecruitStack() {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="RecruitScreen"
+        name={recruitNavigations.RECRUIT}
         component={RecruitScreen}
-        // options={{ headerShown: false }}
+        options={{ headerShown: false }}
       />
       {/* <Stack.Screen name="RecruitDetailScreen" component={RecruitDetailScreen} /> */}
     </Stack.Navigator>

@@ -1,18 +1,22 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import MyWantedScreen from '../../screens/MyWantedScreen';
+import MyWantedScreen from '../../screens/myWanted/MyWantedScreen';
+import { myWantedNavigations } from '../../constants/navigations';
 
-// 각 도메인별 화면 그룹 관리
-const Stack = createNativeStackNavigator();
+export type MyWantedStackParamList = {
+  [myWantedNavigations.MY_WANTED]: undefined;
+};
+
+const Stack = createNativeStackNavigator<MyWantedStackParamList>();
 
 export default function MyWantedStack() {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="MyWantedScreen"
+        name={myWantedNavigations.MY_WANTED}
         component={MyWantedScreen}
-        // options={{
-        //   headerShown: false,
-        // }}
+        options={{
+          headerShown: false,
+        }}
       />
     </Stack.Navigator>
   );

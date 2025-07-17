@@ -1,18 +1,22 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import AllMenuScreen from '../../screens/AllMenuScreen';
+import AllMenuScreen from '../../screens/AllMenu/AllMenuScreen';
+import { allMenuNavigations } from '../../constants/navigations';
 
-// 각 도메인별 화면 그룹 관리
-const Stack = createNativeStackNavigator();
+export type AllMenuStackParamList = {
+  [allMenuNavigations.ALL_MENU]: undefined;
+};
+
+const Stack = createNativeStackNavigator<AllMenuStackParamList>();
 
 export default function AllMenuStack() {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="AllMenuScreen"
+        name={allMenuNavigations.ALL_MENU}
         component={AllMenuScreen}
-        // options={{
-        //   headerShown: false,
-        // }}
+        options={{
+          headerShown: false,
+        }}
       />
     </Stack.Navigator>
   );

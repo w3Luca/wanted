@@ -1,8 +1,16 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import MainTabNavigator from './MainTabNavigator';
-import AuthStack from './stacks/AuthStack';
+import AuthStack, { AuthStackParamList } from './stacks/AuthStack';
+import { NavigatorScreenParams } from '@react-navigation/native';
+import { MainTabParamList } from './MainTabNavigator';
+import { rootNavigations } from '../constants/navigations';
 
-const Stack = createNativeStackNavigator();
+export type RootStackParamList = {
+  [rootNavigations.MAIN_TAB_NAVIGATOR]: NavigatorScreenParams<MainTabParamList>;
+  [rootNavigations.AUTH_STACK]: NavigatorScreenParams<AuthStackParamList>;
+};
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 // 임시 로그인 상태
 const useAuth = () => {
@@ -17,9 +25,12 @@ export default function RootNavigator() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       {isLoggedIn ? (
-        <Stack.Screen name="MainTabNavigator" component={MainTabNavigator} />
+        <Stack.Screen
+          name={rootNavigations.MAIN_TAB_NAVIGATOR}
+          component={MainTabNavigator}
+        />
       ) : (
-        <Stack.Screen name="AuthStack" component={AuthStack} />
+        <Stack.Screen name={rootNavigations.AUTH_STACK} component={AuthStack} />
       )}
     </Stack.Navigator>
   );

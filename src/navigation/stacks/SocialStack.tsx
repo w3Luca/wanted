@@ -1,18 +1,22 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import SocialScreen from '../../screens/SocialScreen';
+import SocialScreen from '../../screens/social/SocialScreen';
+import { socialNavigations } from '../../constants/navigations';
 
-// 각 도메인별 화면 그룹 관리
-const Stack = createNativeStackNavigator();
+export type SocialStackParamList = {
+  [socialNavigations.SOCIAL]: undefined;
+};
+
+const Stack = createNativeStackNavigator<SocialStackParamList>();
 
 export default function SocialStack() {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="SocialScreen"
+        name={socialNavigations.SOCIAL}
         component={SocialScreen}
-        // options={{
-        //   headerShown: false,
-        // }}
+        options={{
+          headerShown: false,
+        }}
       />
     </Stack.Navigator>
   );
