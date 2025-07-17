@@ -4,9 +4,49 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import SocialStack from './stacks/SocialStack';
 import MyWantedStack from './stacks/MyWantedStack';
 import AllMenuStack from './stacks/AllMenuStack';
-import Icon from 'react-native-vector-icons/Ionicons';
+import IonIcon from 'react-native-vector-icons/Ionicons';
 
 const Tab = createBottomTabNavigator();
+
+const RecruitTabIcon = ({ color, size }: { color: string; size: number }) => (
+  <IonIcon name="bag" size={size} color={color} />
+);
+
+const CareerTabIcon = ({
+  color,
+  size,
+}: {
+  focused: boolean;
+  color: string;
+  size: number;
+}) => <IonIcon name="flag" size={size} color={color} />;
+
+const SocialTabIcon = ({
+  color,
+  size,
+}: {
+  focused: boolean;
+  color: string;
+  size: number;
+}) => <IonIcon name="people" size={size} color={color} />;
+
+const MyWantedTabIcon = ({
+  color,
+  size,
+}: {
+  focused: boolean;
+  color: string;
+  size: number;
+}) => <IonIcon name="person-circle" size={size} color={color} />;
+
+const AllMenuTabIcon = ({
+  color,
+  size,
+}: {
+  focused: boolean;
+  color: string;
+  size: number;
+}) => <IonIcon name="menu" size={size} color={color} />;
 
 // 하단 탭 UI와 탭 간 전환 관리
 // RecruitStack과 CareerStack을 탭으로 연결
@@ -15,7 +55,16 @@ export default function MainTabNavigator() {
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: '#007AFF',
+        tabBarActiveTintColor: '#3366ff', // 활성 탭 색상
+        tabBarInactiveTintColor: '#999999', // 비활성 탭 색상
+        tabBarStyle: {
+          backgroundColor: 'rgba(0, 0, 0, 0.8)',
+          position: 'absolute', // 투명한 배경을 위해
+          paddingTop: 10,
+          height: 85,
+          elevation: 0, // android shadow 제거
+          shadowOpacity: 0, // ios shadow 제거
+        },
       }}
     >
       <Tab.Screen
@@ -23,9 +72,7 @@ export default function MainTabNavigator() {
         component={RecruitStack}
         options={{
           title: '채용',
-          tabBarIcon: ({ focused, color, size }) => (
-            <Icon name="bag" size={size} color={focused ? '#007AFF' : color} />
-          ),
+          tabBarIcon: RecruitTabIcon,
         }}
       />
       <Tab.Screen
@@ -33,6 +80,7 @@ export default function MainTabNavigator() {
         component={CareerStack}
         options={{
           title: '커리어',
+          tabBarIcon: CareerTabIcon,
         }}
       />
       <Tab.Screen
@@ -40,6 +88,7 @@ export default function MainTabNavigator() {
         component={SocialStack}
         options={{
           title: '소셜',
+          tabBarIcon: SocialTabIcon,
         }}
       />
       <Tab.Screen
@@ -47,6 +96,7 @@ export default function MainTabNavigator() {
         component={MyWantedStack}
         options={{
           title: 'MY 원티드',
+          tabBarIcon: MyWantedTabIcon,
         }}
       />
       <Tab.Screen
@@ -54,6 +104,7 @@ export default function MainTabNavigator() {
         component={AllMenuStack}
         options={{
           title: '전체',
+          tabBarIcon: AllMenuTabIcon,
         }}
       />
     </Tab.Navigator>
