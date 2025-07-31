@@ -54,7 +54,7 @@ export default function MainTabNavigator() {
         tabBarActiveTintColor: '#3366ff', // 활성 탭 색상
         tabBarInactiveTintColor: '#999999', // 비활성 탭 색상
         tabBarStyle: {
-          backgroundColor: 'rgba(0, 0, 0, 0.8)',
+          backgroundColor: '#fff',
           position: 'absolute', // 투명한 배경을 위해
           paddingTop: 10,
           height: 85,
