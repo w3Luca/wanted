@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
   imageContainer: {
     position: 'relative',
     gap: 10,
-    width: 140,
+    width: 160,
     height: 220,
   },
   image: {
@@ -90,13 +90,14 @@ const styles = StyleSheet.create({
     right: 10,
   },
   title: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: 'bold',
   },
   info: {
     gap: 5,
   },
   infoText: {
+    fontSize: 12,
     color: colors.gray200,
   },
 });

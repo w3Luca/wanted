@@ -5,6 +5,7 @@ import { NotificationBanner } from './components/NotificationBanner';
 import { MenuSection } from './components/MenuSection';
 import { JobSection } from './components/JobSection';
 import { BannerSection } from './components/BannerSection';
+import { ThemeSection } from './components/ThemeSection';
 
 const jobData = [
   {
@@ -110,7 +111,41 @@ const bannerData = [
   },
 ];
 
+const themeData = [
+  {
+    title: '기업 가치 300억 이상',
+    description: '아기 유니콘 기업',
+    image: 'theme1',
+  },
+  {
+    title: '합격 가능성 높은',
+    description: '대규모 채용 중',
+    image: 'theme2',
+  },
+  {
+    title: 'AI 혁신을 이끄는 기업',
+    description: 'AI 선도 기업',
+    image: 'theme3',
+  },
+  {
+    title: '집에서도 일할 수 있는',
+    description: '재택근무',
+    image: 'theme4',
+  },
+  {
+    title: '일본에서 일하고 싶다면',
+    description: '일본 현지 취업',
+    image: 'theme5',
+  },
+  {
+    title: '인재 채용에 진심인',
+    description: '적극 채용 중',
+    image: 'theme6',
+  },
+];
+
 export default function RecruitScreen() {
+  const isLoggedIn = false;
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
       <StatusBar barStyle="dark-content" />
@@ -125,6 +160,9 @@ export default function RecruitScreen() {
         <JobSection data={jobData} title="모두가 주목하고 있어요!" />
         <BannerSection data={bannerData} />
         {/* 로그인 시 합격가능높은 포지션, 비로그인 시 모두가 주목하는 직무? */}
+        <ThemeSection data={themeData} title="테마로 살펴보는 회사/포지션" />
+        {isLoggedIn && <JobSection data={jobData} title="최근 본 포지션" />}
+        <JobSection data={jobData} title="요즘뜨는 포지션" />
       </ScrollView>
     </SafeAreaView>
   );
@@ -134,6 +172,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 10,
+    paddingBottom: 100,
     backgroundColor: 'white',
   },
 });
+// 로그인시
+//메뉴, 합격가능 높은 포지션, 배너, 테마, 최근본포지션, 역세권포지션, 대규모채용중
+// 비로그인시
+// 메뉴, 모두가 주목하고 있어요, 배너, 테마, 역세권포지션, 요즘뜨는 포지션
